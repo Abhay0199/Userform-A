@@ -64,7 +64,7 @@ const UserForm = ({ editIndex, setEditIndex, setUsers }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        // Validate user and address
+    
         if (validateUser() && validateAddress()) {
             
             const updatedUser = {
