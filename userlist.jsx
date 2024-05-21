@@ -46,7 +46,7 @@ const UserList = ({ toggleStatus, deleteAddress, editAddress }) => {
             if (userIndex !== -1) {
                 const user = updatedUsers[userIndex];
 
-                // Check if addresses exist and if the addressIndex is valid
+             
                 if (user.addresses && user.addresses[addressIndex]) {
                     const address = user.addresses[addressIndex];
                     address.status = address.status === 'valid' ? 'invalid' : 'valid';
