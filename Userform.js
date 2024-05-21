@@ -81,9 +81,9 @@ app.get('/user', async (req, res) => {
 
 app.get('/users/:Id', async (req, res) => {
     try {
-        // Check if userId parameter is provided
+       
         if (req.params.Id) {
-            // Retrieve user by ID
+          
             const user = await User.findById(req.params.Id);
             if (!user) {
                 return res.status(404).send('User not found');
