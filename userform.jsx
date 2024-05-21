@@ -14,7 +14,7 @@ const UserForm = ({ editIndex, setEditIndex, setUsers }) => {
     const [errors, setErrors] = useState({});
 
     useEffect(() => {
-        // Fetch user data for editing if in edit mode
+       
         const fetchUserData = async () => {
             try {
                 const response = await http.get(`/users/${editIndex}`);
@@ -33,7 +33,7 @@ const UserForm = ({ editIndex, setEditIndex, setUsers }) => {
         if (editIndex !== null) {
             fetchUserData();
         } else {
-            // Clear form fields when not in edit mode
+           
             setUser({ name: '', age: '', addresses: [] });
             setAddress({
                 city: '',
@@ -62,24 +62,24 @@ const UserForm = ({ editIndex, setEditIndex, setUsers }) => {
     };
 
     const handleSubmit = async (e) => {
-        e.preventDefault(); // Prevent page refresh
+        e.preventDefault();
 
         // Validate user and address
         if (validateUser() && validateAddress()) {
-            // Construct updated user object
+            
             const updatedUser = {
                 ...user,
-                // Use the address directly instead of merging it with the form input address
+                
                 addresses: [...user.addresses, address]
             };
 
-            // Submit the form
+          
             try {
                 const response = editIndex !== null
                     ? await http.put(`/user/${editIndex}`, updatedUser)
                     : await http.post('/user', updatedUser);
 
-                // Update users state
+              
                 setUsers(prevUsers => {
                     if (editIndex !== null) {
                         return prevUsers.map((usr, index) => index === editIndex ? response.data : usr);
@@ -88,7 +88,7 @@ const UserForm = ({ editIndex, setEditIndex, setUsers }) => {
                     }
                 });
 
-                // Reset form fields and errors after submission
+               
                 setUser({ name: '', age: '', addresses: [] });
                 setErrors({});
                 setEditIndex(null);
